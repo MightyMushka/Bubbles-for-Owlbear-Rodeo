@@ -5,18 +5,12 @@ export function calculateNewHealth(
   healthDiff: number,
 ) {
   let newHealth: number;
-  let newTempHealth: number;
+  let newTempHealth: number = tempHealth; // Always return unchanged
 
   // If health was less than 0 use 0 instead as per 5e rules,
   // displaying negative HP is useful or overflow but not for AOE effects
   if (health < 0) {
     health = 0;
-  }
-
-  // If temp health was less than 0 use 0 instead as per 5e rules,
-  // displaying negative HP is useful or overflow but not for AOE effects
-  if (tempHealth < 0) {
-    tempHealth = 0;
   }
 
   if (healthDiff > 0) {
@@ -35,24 +29,7 @@ export function calculateNewHealth(
 
     let damage = Math.abs(healthDiff);
 
-    if (tempHealth <= 0) {
-      // Doesn't have temp health
-
-      newHealth = health - damage;
-      newTempHealth = tempHealth;
-    } else {
-      // Has temp health
-
-      if (tempHealth > damage) {
-        // Damage only changes temp health
-        newHealth = health;
-        newTempHealth = tempHealth - damage;
-      } else {
-        //damage overflows into regular health
-        newHealth = health + tempHealth - damage;
-        newTempHealth = 0;
-      }
-    }
+    newHealth = health - damage;
   }
 
   // Restrict health to values within [-999, 9999]

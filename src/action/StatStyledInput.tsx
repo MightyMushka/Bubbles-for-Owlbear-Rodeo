@@ -49,8 +49,8 @@ const nameToLabel = (name: InputName) => {
     case "maxHealth":
       return "Hit Points Maximum";
     case "tempHealth":
-      return "Temporary Hit Points";
+      return "Willpower";
     case "armorClass":
-      return "Armor Class";
+      return "Armor";
   }
 };
