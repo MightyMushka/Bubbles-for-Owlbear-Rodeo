@@ -1,7 +1,7 @@
 import "../index.css";
 import "./editStatsStyle.css";
 import Token from "../metadataHelpers/TokenType";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   getNewStatValue,
   InputName,
@@ -41,6 +41,7 @@ export default function StatsMenuApp({
   role: "GM" | "PLAYER";
 }): JSX.Element {
   const [token, setToken] = useState<Token>(initialToken);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(
     () =>
@@ -225,8 +226,19 @@ export default function StatsMenuApp({
     </div>
   );
 
+  useEffect(() => {
+    // Force a reflow/resize when content changes (iOS/iPadOS fix)
+    if (menuRef.current) {
+      // This will force the browser to recalculate layout
+      // and can help with cut-off issues in overlays/webviews
+      menuRef.current.style.minHeight = "0px";
+      void menuRef.current.offsetHeight; // force reflow
+      menuRef.current.style.minHeight = "1px";
+    }
+  }, [nameTagsEnabled, role, token.hideStats]);
+
   return (
-    <div className="h-full space-y-2 overflow-hidden px-2 py-1">
+    <div ref={menuRef} className="h-full space-y-2 overflow-hidden px-2 py-1">
       {nameTagsEnabled && NameField}
       {StatsMenu}
       {role === "GM" && HideButton}
