@@ -140,7 +140,7 @@ export function SceneTokensTable({
                 included ? option : 0,
                 appState.value ? appState.value : 0,
               );
-              const [newHealth, newTempHealth] = calculateNewHealth(
+              const [newHealth] = calculateNewHealth(
                 token.health,
                 token.maxHealth,
                 token.tempHealth,
@@ -329,14 +329,16 @@ export function SceneTokensTable({
                         })}
                       >
                         {scaledDamage}
+                        {appState.useArmor && token.armorClass > 0 && scaledDamage < 0
+                          ? ` (- AR ${token.armorClass})`
+                          : ""}
                       </TableCell>
                       <TableCell
                         className={cn("md:min-w-16 lg:min-w-20", {
                           "text-mirage-500 dark:text-mirage-400": !included,
                         })}
                       >
-                        {newHealth.toString() +
-                          (newTempHealth > 0 ? ` (${newTempHealth})` : "")}
+                        {newHealth.toString()}
                       </TableCell>
                     </>
                   )}
