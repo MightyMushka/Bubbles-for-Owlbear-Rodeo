@@ -120,7 +120,7 @@ export function SceneTokensTable({
                 <>
                   <TableHead>Multiplier</TableHead>
                   <TableHead>Damage</TableHead>
-                  <TableHead>New Hit Points</TableHead>
+                  <TableHead>Hit Points</TableHead>
                 </>
               )}
             </TableRow>
@@ -341,11 +341,11 @@ export function SceneTokensTable({
                           : `${scaledDamage}`}
                       </TableCell>
                       <TableCell
-                        className={cn("md:min-w-16 lg:min-w-20", {
+                        className={cn({
                           "text-mirage-500 dark:text-mirage-400": !included,
                         })}
                       >
-                        {newHealth.toString()}
+                        {`${newHealth} (${token.health})`}
                       </TableCell>
                     </>
                   )}
