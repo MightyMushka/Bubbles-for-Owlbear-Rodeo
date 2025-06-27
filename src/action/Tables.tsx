@@ -236,6 +236,8 @@ export function SceneTokensTable({
                                 target,
                                 token.health,
                                 setTokens,
+                                token,
+                                appState
                               )
                             }
                           />
@@ -462,15 +464,42 @@ function handleStatUpdate(
   target: HTMLInputElement,
   previousValue: number,
   setTokens: React.Dispatch<React.SetStateAction<Token[]>>,
+  token?: Token,
+  appState?: BulkEditorState
 ) {
   const name = target.name;
   if (!isInputName(name)) throw "Error: invalid input name.";
 
-  const value = getNewStatValue(name, target.value, previousValue);
+  let value: number;
+  // Only apply armor if editing health, input starts with '-', and all context is present
+  if (
+    name === "health" &&
+    target.value.trim().startsWith("-") &&
+    token && appState
+  ) {
+    // Parse the subtraction value
+    const diff = parseInt(target.value, 10);
+    if (!isNaN(diff)) {
+      // Use calculateNewHealth to apply armor if enabled
+      const [newHealth] = calculateNewHealth(
+        token.health,
+        token.maxHealth,
+        token.tempHealth,
+        diff, // diff is negative already
+        token.armorClass,
+        appState.useArmor
+      );
+      value = newHealth;
+    } else {
+      // fallback to default logic if parse fails
+      value = getNewStatValue(name, target.value, previousValue);
+    }
+  } else {
+    value = getNewStatValue(name, target.value, previousValue);
+  }
 
   setTokens((prevTokens) => {
     for (let i = 0; i < prevTokens.length; i++) {
-      // console.log(prevTokens[i]);
       if (prevTokens[i].item.id === itemId)
         prevTokens[i] = { ...prevTokens[i], [name]: value } as Token;
     }
