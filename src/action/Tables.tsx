@@ -337,7 +337,7 @@ export function SceneTokensTable({
                       >
                         {finalDamage}
                         {appState.useArmor && token.armorClass > 0 && armorReduction > 0
-                          ? ` (- AR ${token.armorClass})`
+                          ? ` (-AR${token.armorClass})`
                           : ""}
                       </TableCell>
                       <TableCell
