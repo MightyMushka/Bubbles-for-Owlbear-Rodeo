@@ -332,7 +332,7 @@ export function SceneTokensTable({
                         </div>
                       </TableCell>
                       <TableCell
-                        className={cn("md:min-w-20 lg:min-w-25", {
+                        className={cn("md:min-w-25 lg:min-w-40", {
                           "text-mirage-500 dark:text-mirage-400": !included,
                         })}
                       >
