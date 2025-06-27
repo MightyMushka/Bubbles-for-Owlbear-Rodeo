@@ -140,6 +140,13 @@ export function SceneTokensTable({
                 included ? option : 0,
                 appState.value ? appState.value : 0,
               );
+              // Calculate final damage after armor reduction if enabled
+              let finalDamage = scaledDamage;
+              let armorReduction = 0;
+              if (appState.useArmor && token.armorClass > 0 && scaledDamage > 0) {
+                armorReduction = Math.min(token.armorClass, scaledDamage);
+                finalDamage = scaledDamage - armorReduction;
+              }
               const [newHealth] = calculateNewHealth(
                 token.health,
                 token.maxHealth,
@@ -328,8 +335,8 @@ export function SceneTokensTable({
                           "text-mirage-500 dark:text-mirage-400": !included,
                         })}
                       >
-                        {scaledDamage}
-                        {appState.useArmor && token.armorClass > 0 && scaledDamage < 0
+                        {finalDamage}
+                        {appState.useArmor && token.armorClass > 0 && armorReduction > 0
                           ? ` (- AR ${token.armorClass})`
                           : ""}
                       </TableCell>
