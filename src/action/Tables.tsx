@@ -147,11 +147,12 @@ export function SceneTokensTable({
                 armorReduction = Math.min(token.armorClass, scaledDamage);
                 finalDamage = scaledDamage - armorReduction;
               }
+              // Use finalDamage (after armor) for newHealth calculation
               const [newHealth] = calculateNewHealth(
                 token.health,
                 token.maxHealth,
                 token.tempHealth,
-                -1 * scaledDamage,
+                -1 * finalDamage,
                 token.armorClass,
                 appState.useArmor // always present now
               );
