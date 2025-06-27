@@ -307,7 +307,7 @@ export function SceneTokensTable({
                             <ArrowLeftIcon className="size-4" />
                           </Button>
                           <Button
-                            className="flex h-8 w-10 items-center justify-center text-lg font-medium"
+                            className="flex h-8 w-5 items-center justify-center font-medium"
                             tabIndex={-1}
                             variant={"ghost"}
                             onClick={(e) => {
@@ -332,7 +332,7 @@ export function SceneTokensTable({
                         </div>
                       </TableCell>
                       <TableCell
-                        className={cn({
+                        className={cn("md:min-w-16 lg:min-w-20", {
                           "text-mirage-500 dark:text-mirage-400": !included,
                         })}
                       >
