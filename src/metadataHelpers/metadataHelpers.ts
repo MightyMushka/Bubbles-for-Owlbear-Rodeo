@@ -11,7 +11,7 @@ export function getPluginMetadata(itemMetadata: Metadata, pluginId?: string) {
 export function readBooleanFromObject(
   object: unknown,
   key: string,
-  fallback: boolean = false,
+  fallback: boolean = true,
 ): boolean {
   const value = safeObjectRead(object, key);
   if (typeof value !== "boolean") return fallback;
