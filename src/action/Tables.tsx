@@ -335,13 +335,21 @@ export function SceneTokensTable({
                           "text-mirage-500 dark:text-mirage-400": !included,
                         })}
                       >
-                        {finalDamage}
                         {appState.useArmor && token.armorClass > 0 && armorReduction > 0
-                          ? ` (-AR${token.armorClass})`
-                          : ""}
+                          ? `${scaledDamage} - AR${token.armorClass} = ${finalDamage}`
+                          : `${scaledDamage}`}
                       </TableCell>
                       <TableCell
                         className={cn("md:min-w-16 lg:min-w-20", {
+                          "text-mirage-500 dark:text-mirage-400": !included,
+                        })}
+                      >
+                        {appState.useArmor && token.armorClass > 0 && armorReduction > 0
+                          ? `${scaledDamage} - AR${token.armorClass} = ${finalDamage}`
+                          : `${scaledDamage}`}
+                      </TableCell>
+                      <TableCell
+                        className={cn({
                           "text-mirage-500 dark:text-mirage-400": !included,
                         })}
                       >
