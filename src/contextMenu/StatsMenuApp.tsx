@@ -168,8 +168,8 @@ export default function StatsMenuApp({
       <div className="col-start-3 row-start-1 flex items-center justify-center">
         <div className="size-0">
           <TextRing
-            topText={"TEMPORARY"}
-            bottomText={"HIT POINTS"}
+            topText={"WILLPOWER"}
+            bottomText={"POINTS"}
             letterSpacing={0.8}
           />
         </div>
@@ -186,7 +186,7 @@ export default function StatsMenuApp({
 
       <div className="col-start-4 row-start-1 flex items-center justify-center">
         <div className="size-0">
-          <TextRing topText={"ARMOR"} bottomText={"CLASS"} letterSpacing={1} />
+          <TextRing topText={"ARMOR"} bottomText={"RATING"} letterSpacing={1} />
         </div>
       </div>
       <div className="col-start-4 row-start-1 flex size-full items-center justify-center">
