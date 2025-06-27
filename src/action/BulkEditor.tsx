@@ -33,6 +33,7 @@ export default function BulkEditor(): JSX.Element {
       damageScaleOptions: new Map<string, number>(),
       includedItems: new Map<string, boolean>(),
       mostRecentSelection: [],
+      useArmor: false, // NEW: default to false
     };
   });
 
@@ -206,6 +207,20 @@ export default function BulkEditor(): JSX.Element {
         ></Header>
         <ScrollArea className="h-full sm:px-4">
           <div className="flex flex-col items-center justify-start gap-2 pb-2">
+            <div className="flex flex-row items-center gap-2 p-2">
+              <input
+                type="checkbox"
+                id="use-armor-toggle"
+                checked={appState.useArmor}
+                onChange={(e) =>
+                  dispatch({
+                    type: "set-use-armor",
+                    useArmor: e.target.checked,
+                  })
+                }
+              />
+              <label htmlFor="use-armor-toggle">Use Armor to reduce damage</label>
+            </div>
             {getTable()}
             {playerRole === "GM" && (
               <ChangeShowItemsButton appState={appState} dispatch={dispatch} />

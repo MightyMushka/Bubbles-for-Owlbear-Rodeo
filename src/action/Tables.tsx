@@ -145,6 +145,8 @@ export function SceneTokensTable({
                 token.maxHealth,
                 token.tempHealth,
                 -1 * scaledDamage,
+                token.armorClass,
+                appState.useArmor // always present now
               );
 
               const nextDamageOption = () => {
@@ -523,7 +525,7 @@ function StatInput({
           if (!ignoreBlur) runUpdateHandler(e);
         },
         onKeyDown: (e) => {
-          if (e.key === "Enter") {
+          if e.key === "Enter") {
             (e.target as HTMLInputElement).blur();
           } else if (e.key === "Escape") {
             ignoreBlur = true;

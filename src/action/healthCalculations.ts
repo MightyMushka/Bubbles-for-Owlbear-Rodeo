@@ -3,6 +3,8 @@ export function calculateNewHealth(
   maxHealth: number,
   tempHealth: number,
   healthDiff: number,
+  armor: number = 0, // New optional armor parameter
+  useArmor: boolean = false // New optional useArmor parameter
 ) {
   let newHealth: number;
   let newTempHealth: number = tempHealth; // Always return unchanged
@@ -28,6 +30,10 @@ export function calculateNewHealth(
     // Damage
 
     let damage = Math.abs(healthDiff);
+    // Apply armor reduction if enabled
+    if (useArmor && armor > 0) {
+      damage = Math.max(0, damage - armor);
+    }
 
     newHealth = health - damage;
   }

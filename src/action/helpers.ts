@@ -57,6 +57,7 @@ export async function applyHealthDiffToItems(
   includedItems: Map<string, boolean>,
   damageScaleSettings: Map<string, number>,
   tokens: Token[],
+  useArmor: boolean, // NEW: per-action toggle
 ) {
   await OBR.scene.items.updateItems(
     tokens.map((token) => token.item),
@@ -80,6 +81,8 @@ export async function applyHealthDiffToItems(
           tokens[i].maxHealth.valueOf(),
           tokens[i].tempHealth.valueOf(),
           scaledHealthDiff,
+          tokens[i].armorClass,
+          useArmor
         );
 
         const newMetadata = {
@@ -325,6 +328,8 @@ export function reducer(
       return { ...state, showItems: action.showItems };
     case "set-most-recent-selection":
       return { ...state, mostRecentSelection: action.mostRecentSelection };
+    case "set-use-armor":
+      return { ...state, useArmor: action.useArmor };
     default:
       console.log("unhandled action");
       return state;

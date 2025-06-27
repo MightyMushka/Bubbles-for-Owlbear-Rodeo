@@ -36,6 +36,7 @@ export type BulkEditorState = {
   includedItems: Map<string, boolean>;
   showItems: "ALL" | "SELECTED";
   mostRecentSelection: string[];
+  useArmor: boolean; // NEW: always visible toggle
 };
 
 export type Action =
@@ -108,4 +109,8 @@ export type Action =
   | {
       type: "set-most-recent-selection";
       mostRecentSelection: string[];
+    }
+  | {
+      type: "set-use-armor";
+      useArmor: boolean;
     };

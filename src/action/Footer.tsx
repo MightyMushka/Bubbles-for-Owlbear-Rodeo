@@ -52,6 +52,7 @@ export default function Footer({
                   appState.includedItems,
                   appState.damageScaleOptions,
                   tokens,
+                  appState.useArmor, // Pass useArmor to applyHealthDiffToItems
                 );
                 dispatch({ type: "set-operation", operation: "none" });
               },
@@ -69,6 +70,7 @@ export default function Footer({
                   appState.includedItems,
                   appState.damageScaleOptions,
                   tokens,
+                  appState.useArmor, // Pass useArmor to applyHealthDiffToItems
                 );
                 dispatch({ type: "set-operation", operation: "none" });
               },
