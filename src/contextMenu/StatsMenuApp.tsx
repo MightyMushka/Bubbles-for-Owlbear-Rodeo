@@ -227,15 +227,13 @@ export default function StatsMenuApp({
   );
 
   useEffect(() => {
-    // Force a reflow/resize when content changes (iOS/iPadOS fix)
+    // Force a reflow/resize only once on mount (iOS/iPadOS fix)
     if (menuRef.current) {
-      // This will force the browser to recalculate layout
-      // and can help with cut-off issues in overlays/webviews
       menuRef.current.style.minHeight = "0px";
-      void menuRef.current.offsetHeight; // force reflow
+      void menuRef.current.offsetHeight;
       menuRef.current.style.minHeight = "1px";
     }
-  }, [nameTagsEnabled, role, token.hideStats]);
+  }, []); // Only run on mount
 
   return (
     <div ref={menuRef} className="h-full space-y-2 overflow-hidden px-2 py-1">
