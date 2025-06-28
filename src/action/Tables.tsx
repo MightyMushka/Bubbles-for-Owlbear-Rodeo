@@ -339,6 +339,10 @@ export function SceneTokensTable({
                         {appState.useArmor && token.armorClass > 0 && armorReduction > 0
                           ? `${finalDamage} (${scaledDamage}-AR${token.armorClass})`
                           : `${scaledDamage}`}
+                        {/* Provisional calculated health preview as a single number */}
+                        <div className="text-xs text-mirage-400 dark:text-mirage-500 mt-1">
+                          {token.health - finalDamage}
+                        </div>
                       </TableCell>
                       <TableCell
                         className={cn({
