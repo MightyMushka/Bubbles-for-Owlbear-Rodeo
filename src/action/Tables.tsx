@@ -152,7 +152,6 @@ export function SceneTokensTable({
               const [newHealth] = calculateNewHealth(
                 token.health,
                 token.maxHealth,
-                token.tempHealth,
                 -finalDamage, // negative for damage
                 token.armorClass,
                 appState.useArmor // always present now
