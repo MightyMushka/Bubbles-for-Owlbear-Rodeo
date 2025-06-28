@@ -211,15 +211,15 @@ export default function BulkEditor(): JSX.Element {
               <input
                 type="checkbox"
                 id="use-armor-toggle"
-                checked={appState.useArmor}
+                checked={!appState.useArmor}
                 onChange={(e) =>
                   dispatch({
                     type: "set-use-armor",
-                    useArmor: e.target.checked,
+                    useArmor: !e.target.checked,
                   })
                 }
               />
-              <label htmlFor="use-armor-toggle">Use Armor to reduce damage</label>
+              <label htmlFor="use-armor-toggle">Ignore Armor</label>
             </div>
             {getTable()}
             {playerRole === "GM" && (
