@@ -33,7 +33,7 @@ export default function BulkEditor(): JSX.Element {
       damageScaleOptions: new Map<string, number>(),
       includedItems: new Map<string, boolean>(),
       mostRecentSelection: [],
-      useArmor: false, // NEW: default to false
+      useArmor: true, // Set to true so the 'Ignore Armor' checkbox is unticked by default
     };
   });
 
