@@ -1,13 +1,12 @@
 export function calculateNewHealth(
   health: number,
   maxHealth: number,
-  tempHealth: number,
+  tempHealth: number, // will be ignored
   healthDiff: number,
   armor: number = 0, // New optional armor parameter
   useArmor: boolean = false // New optional useArmor parameter
 ) {
   let newHealth: number;
-  let newTempHealth: number = tempHealth; // Always return unchanged
 
   // If health was less than 0 use 0 instead as per 5e rules,
   // displaying negative HP is useful or overflow but not for AOE effects
@@ -21,8 +20,6 @@ export function calculateNewHealth(
     let healing = healthDiff;
 
     newHealth = health + healing;
-    newTempHealth = tempHealth;
-
     if (newHealth > maxHealth) {
       newHealth = maxHealth;
     }
@@ -45,14 +42,8 @@ export function calculateNewHealth(
     newHealth = -999;
   }
 
-  // Restrict temp health to values within [-999, 999]
-  if (newTempHealth > 999) {
-    newTempHealth = 999;
-  } else if (newTempHealth < -999) {
-    newTempHealth = -999;
-  }
-
-  return [newHealth, newTempHealth];
+  // Always return unchanged tempHealth (ignored)
+  return [newHealth, tempHealth];
 }
 
 export function scaleHealthDiff(

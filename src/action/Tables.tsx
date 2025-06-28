@@ -148,11 +148,12 @@ export function SceneTokensTable({
                 finalDamage = Math.max(0, scaledDamage - armorReduction); // Ensure no negative damage
               }
               // Use finalDamage (after armor) for newHealth calculation
+              // Pass -finalDamage for damage (negative value)
               const [newHealth] = calculateNewHealth(
                 token.health,
                 token.maxHealth,
                 token.tempHealth,
-                -1 * finalDamage,
+                -finalDamage, // negative for damage
                 token.armorClass,
                 appState.useArmor // always present now
               );
