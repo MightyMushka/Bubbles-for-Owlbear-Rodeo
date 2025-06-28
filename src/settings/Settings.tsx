@@ -47,22 +47,10 @@ export default function Settings(): JSX.Element {
             <div>
               <h1 className="text-2xl font-light">Settings</h1>
               <p className="text-xs text-mirage-400">
-                <i>Stat Bubbles for D&D</i>
+                <i>Stat Bubbles for Dragonbane</i>
               </p>
             </div>
             <div className="flex gap-2 pr-0.5">
-              <LinkButton
-                name="Patreon"
-                size="large"
-                icon={<Patreon />}
-                href={"https://www.patreon.com/SeamusFinlayson"}
-              />
-              <LinkButton
-                name="Change Log"
-                size="large"
-                icon={<History />}
-                href={"https://www.patreon.com/collection/306916?view=expanded"}
-              />
               <LinkButton
                 name="Instructions"
                 size="large"
@@ -70,12 +58,6 @@ export default function Settings(): JSX.Element {
                 href={
                   "https://github.com/SeamusFinlayson/Bubbles-for-Owlbear-Rodeo?tab=readme-ov-file#how-it-works"
                 }
-              />
-              <LinkButton
-                name="Report Bug"
-                size="large"
-                icon={<Bug />}
-                href="https://discord.gg/WMp9bky4be"
               />
             </div>
           </div>
