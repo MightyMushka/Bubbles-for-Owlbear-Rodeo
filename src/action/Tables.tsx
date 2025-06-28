@@ -487,8 +487,9 @@ function handleStatUpdate(
     token && appState
   ) {
     // Parse the subtraction value
-    const diff = parseInt(target.value, 10);
-    if (!isNaN(diff)) {
+    // Robustly parse negative numbers, handle empty/malformed input
+    const diff = Number(target.value);
+    if (!isNaN(diff) && diff < 0) {
       // Use calculateNewHealth to apply armor if enabled
       const [newHealth] = calculateNewHealth(
         token.health,
