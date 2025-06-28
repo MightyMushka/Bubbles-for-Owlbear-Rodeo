@@ -15,10 +15,7 @@ import { AlignVerticalJustifyStart } from "../components/icons/AlignVerticalJust
 import { Drama } from "../components/icons/Drama";
 import { NameTag } from "../components/icons/NameTag";
 import LinkButton from "./LinkButton";
-import { Patreon } from "@/components/icons/Patreon";
 import { QuestionMark } from "@/components/icons/QuestionMark";
-import { History } from "@/components/icons/History";
-import { Bug } from "@/components/icons/bug";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   OFFSET_METADATA_ID,
